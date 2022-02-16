@@ -69,3 +69,7 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+.login_container{
+  margin-top: 150px;
+  text-align: center;
+}
