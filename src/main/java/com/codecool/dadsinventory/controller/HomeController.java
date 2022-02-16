@@ -25,7 +25,7 @@ public class HomeController {
         this.itemService = itemService;
     }
 
-    @GetMapping
+    @GetMapping("/index")
     public String index(Model model, @RequestParam(name="searchTerm", required = false, defaultValue = "") String searchTerm){
         String title = "Dad's Inventory";
         model.addAttribute("title", title);
