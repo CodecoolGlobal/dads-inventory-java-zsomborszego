@@ -62,7 +62,9 @@ public class InitService {
         userService.saveUser(new AppUser(null, "Mom Dolores", "dolores", "1234", new ArrayList<>()));
 
         userService.addRoleToUser("peter", "ROLE_USER");
+        userService.addRoleToUser("peter", "ROLE_ADMIN");
         userService.addRoleToUser("dolores", "ROLE_USER");
+        userService.addRoleToUser("dolores", "ROLE_MANAGER");
         
     }
 
