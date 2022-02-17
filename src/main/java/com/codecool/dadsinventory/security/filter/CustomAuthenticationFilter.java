@@ -51,7 +51,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 .withClaim("role", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
         Cookie cookie = new Cookie("token", access_token);
-        cookie.setMaxAge(60);
+        cookie.setMaxAge(60 * 10 * 10 );
         cookie.setSecure(true);
         response.addCookie(cookie);
         response.setContentType(APPLICATION_JSON_VALUE);
