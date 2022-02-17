@@ -29,11 +29,9 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = "";
         Cookie[] cookies = request.getCookies();
-        System.out.println(Arrays.toString(cookies));
         if (cookies != null) {
             for (Cookie ck : cookies) {
                 if ("token".equals(ck.getName())) {
-                    System.out.println(ck.getValue());
                     token = ck.getValue();
                 }
             }
@@ -44,13 +42,11 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
         } else {
             if (!token.equals("")) {
                 try {
-                    System.out.println(token);
                     Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
                     JWTVerifier verifier = JWT.require(algorithm).build();
                     DecodedJWT decoderJWT = verifier.verify(token);
                     String username = decoderJWT.getSubject();
                     String[] roles = decoderJWT.getClaim("role").asArray(String.class);
-                    System.out.println(Arrays.toString(roles));
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
                     stream(roles).forEach(role -> {
                         authorities.add(new SimpleGrantedAuthority(role));
