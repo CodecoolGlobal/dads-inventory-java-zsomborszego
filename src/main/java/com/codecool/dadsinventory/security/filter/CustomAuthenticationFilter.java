@@ -55,6 +55,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         cookie.setSecure(true);
         response.addCookie(cookie);
         response.setContentType(APPLICATION_JSON_VALUE);
+        response.sendRedirect("/index");
     }
 
 }
