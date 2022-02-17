@@ -58,6 +58,11 @@ public class HomeController {
     public String loginPage(){
         return "login";
     }
+    @GetMapping("/user/logout")
+    public ResponseEntity<?> removeuser(HttpServletResponse response) throws IOException {
+        ResponseCookie resCookie = ResponseCookie.from("token", null).path("/").build();
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, resCookie.toString()).build();
+    }
 
 
 }
